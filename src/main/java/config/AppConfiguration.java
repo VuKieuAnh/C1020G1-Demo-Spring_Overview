@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import service.student.IStudentService;
+import service.student.StudentService;
 
 @Configuration
 @EnableWebMvc
@@ -28,6 +30,11 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
+    }
+
+    @Bean
+    public IStudentService studentService(){
+        return new StudentService();
     }
 
 
