@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.student.IStudentService;
-import service.student.StudentService;
 
 @Controller
 @RequestMapping("/students")
@@ -15,6 +14,7 @@ public class StudentController {
 //    private IStudentService studentService = new StudentService();
     @Autowired
     private IStudentService studentService;
+
 
 //    @GetMapping("/list")
 //    public String listStudent(ModelMap modelMap){
@@ -53,10 +53,34 @@ public class StudentController {
         modelMap.addAttribute("student", student);
         return "edit";
     }
+//    @PostMapping("/edit/{id}")
+//    public ModelAndView editStudent(@PathVariable int id, @RequestParam String name, String address){
+//        Student student = new Student(id, name, address);
+//        studentService2.save(student, id);
+//        return new ModelAndView("list", "list", studentService2.findAll());
+//    }
     @PostMapping("/edit/{id}")
-    public ModelAndView editStudent(@PathVariable int id, @RequestParam String name, String address){
-        Student student = new Student(id, name, address);
+    public ModelAndView editStudent(@PathVariable int id, @ModelAttribute Student student){
+        student.setId(id);
         studentService.save(student, id);
         return new ModelAndView("list", "list", studentService.findAll());
+    }
+
+    @GetMapping("/create")
+    public ModelAndView showFormCreate(){
+        ModelAndView modelAndView = new ModelAndView("create");
+        modelAndView.addObject("s", new Student());
+        return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView create(@ModelAttribute Student s){
+        int id = studentService.findAll().size();
+        s.setId(id);
+        studentService.update(s);
+        ModelAndView modelAndView = new ModelAndView("create", "s", new Student());
+        modelAndView.addObject("mess", "Tao moi thanh cong students " + s.getName());
+        return modelAndView;
+
     }
 }

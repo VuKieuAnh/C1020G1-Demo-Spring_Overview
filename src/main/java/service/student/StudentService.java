@@ -28,7 +28,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public boolean update(Student student) {
-//        students.
+        students.add(student);
         return false;
     }
 
