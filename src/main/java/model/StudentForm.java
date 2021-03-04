@@ -1,11 +1,13 @@
 package model;
 
-public class Student {
+import org.springframework.web.multipart.MultipartFile;
+
+public class StudentForm {
     private int id;
     private String name;
     private String address;
     private int class_id;
-    private String avatar;
+    private MultipartFile avatar;
 
     public int getClass_id() {
         return class_id;
@@ -39,39 +41,41 @@ public class Student {
         this.address = address;
     }
 
-    public Student(String name, String address) {
+    public StudentForm(String name, String address) {
         this.name = name;
         this.address = address;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 
-    public Student(int id, String name, String address) {
+    public StudentForm(int id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
     }
 
-    public Student() {
+    public StudentForm() {
     }
 
 
-    public Student(String name, String address, int class_id) {
+    public StudentForm(String name, String address, int class_id) {
         this.name = name;
         this.address = address;
         this.class_id = class_id;
     }
 
-    public Student(String name, String address, int class_id, String avatar) {
+    public StudentForm(String name, String address, int class_id, MultipartFile avatar) {
         this.name = name;
         this.address = address;
         this.class_id = class_id;
+        this.avatar = avatar;
+    }
+
+    public MultipartFile getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(MultipartFile avatar) {
         this.avatar = avatar;
     }
 }

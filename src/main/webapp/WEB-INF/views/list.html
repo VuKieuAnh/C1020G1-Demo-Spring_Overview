@@ -10,11 +10,15 @@
     <tr>
         <td>Name</td>
         <td>Address</td>
+        <td>Avatar</td>
+        <td>Class id</td>
     </tr>
     <th:block th:each="s:${list}">
         <tr>
             <td th:text="${s.name}"></td>
             <td th:text="${s.address}"></td>
+            <td><img th:src="@{'i/'+ ${s.getAvatar()}}" width="100px" alt=""></td>
+            <td th:text="${s.class_id}"></td>
         </tr>
     </th:block>
 </table>
